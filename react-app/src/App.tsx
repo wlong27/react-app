@@ -15,7 +15,9 @@ function App() {
         heading="Cities"
         onSelectItem={handleSelectItem}
       ></ListGroup>
-      <Alert>Hello World</Alert>
+      <Alert>
+        <span>Hello World</span>
+      </Alert>
     </div>
   );
 }
