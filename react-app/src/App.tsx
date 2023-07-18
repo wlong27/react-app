@@ -6,6 +6,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ApiCall from './ApiCall';
 import CharacterDetails from './CharacterDetails';
+import './styles.css'; 
 
 // function App() {
 //   const items = ["New York", "San Franciso", "Tokyo", "London", "Paris"];
