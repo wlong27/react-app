@@ -2,11 +2,13 @@
 // import Alert from "./components/Alert";
 // import Buttons from "./components/Buttons";
 // import ListGroup from "./components/ListGroup";
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ApiCall from './ApiCall';
-import CharacterDetails from './CharacterDetails';
-import './styles.css'; 
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ApiCall from "./ApiCall";
+import CharacterDetails from "./CharacterDetails";
+import "./styles.css";
+import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
+import './App.css'; 
 
 // function App() {
 //   const items = ["New York", "San Franciso", "Tokyo", "London", "Paris"];
@@ -38,15 +40,19 @@ import './styles.css';
 // }
 const App: React.FC = () => {
   return (
-    <Router>
-      <div>
-        <h1>My React App</h1>
-        <Routes>
-          <Route path="/" element={<ApiCall />} />
-          <Route path="/characters/:name" element={<CharacterDetails />} />
-        </Routes>
-      </div>
-    </Router>
+    <>
+      <AudioPlayer></AudioPlayer>
+      <Router>
+        <div className="App">
+          <h1>My Star Wars React App</h1>
+          <Routes>
+            <Route path="/" element={<ApiCall />} />
+            <Route path="/characters/:name" element={<CharacterDetails />} />
+          </Routes>
+        </div>
+      </Router>
+      
+    </>
   );
 };
 
