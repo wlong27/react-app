@@ -40,9 +40,9 @@ export default App;
 
 In the example above, we've defined two route components: `<Home />` and `<About />`. When the user navigates to the root path ("/"), the `<Home />` component will be rendered, and when they navigate to the "/about" path, the `<About />` component will be rendered.
 
-## `<Router>` and `<Switch>`
+## `<Router>` and `<Routes>`
 
-The `<Router>` component wraps around your application's content and provides the context for routing. The `<Switch>` component is used to ensure that only one route's component is rendered at a time. It goes through the defined routes in order and renders the first one that matches the current URL.
+The `<Router>` component wraps around your application's content and provides the context for routing. The `<Routes>` component is used to ensure that only one route's component is rendered at a time. It goes through the defined routes in order and renders the first one that matches the current URL.
 
 ## Route Matching
 
