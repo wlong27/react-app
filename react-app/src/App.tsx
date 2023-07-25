@@ -4,7 +4,7 @@
 // import ListGroup from "./components/ListGroup";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ApiCall from "./ApiCall";
+import Characters from "./Characters";
 import CharacterDetails from "./CharacterDetails";
 import "./styles.css";
 import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
         <div className="App">
           <h1>My Star Wars React App</h1>
           <Routes>
-            <Route path="/" element={<ApiCall />} />
+            <Route path="/" element={<Characters />} />
             <Route path="/characters/:name" element={<CharacterDetails />} />
           </Routes>
         </div>

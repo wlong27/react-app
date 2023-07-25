@@ -2,6 +2,8 @@
 
 React Router is a popular library used with React.js to handle routing and navigation in web applications. It allows you to create single-page applications (SPAs) where the content is dynamically updated without requiring a full page refresh. React Router provides a declarative way to define routes and manage the application's URL and component rendering based on the current URL.
 
+React Router enables "client side routing". Client side routing allows your app to update the URL from a link click without making another request for another document from the server. This results in a faster user experiences because the browser doesn't need to request an entirely new document or re-evaluate CSS and JavaScript assets for the next page. 
+
 ## Installation
 
 To use React Router in your React.js application, you need to install it using a package manager like npm or yarn:
@@ -23,10 +25,10 @@ import About from './components/About';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
+      <Routes>
+        <Route path="/" element={Home} />
         <Route path="/about" component={About} />
-      </Switch>
+      </Routes>
     </Router>
   );
 }
@@ -61,13 +63,53 @@ The `username` parameter will be extracted from the URL and passed as a prop to 
 React Router provides components like `<Link>` and `<NavLink>` to handle navigation within your application. Instead of using traditional anchor tags (`<a>`), these components ensure that navigation occurs without a full page refresh, providing a smooth user experience.
 
 ```jsx
-import { Link, NavLink } from 'react-router-dom';
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 
-// Inside your component
-<Link to="/about">About</Link>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <div>
+        <h1>Hello World</h1>
+        <Link to="about">About Us</Link>
+      </div>
+    ),
+  },
+  {
+    path: "about",
+    element: <div>About</div>,
+  },
+]);
 
-// NavLink adds a class to the active link, allowing for custom styling for active routes.
-<NavLink to="/about" activeClassName="active">About</NavLink>
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
+```
+
+
+### `NavLink`
+A `<NavLink>` is a special kind of `<Link>` that knows whether or not it is "active" or "pending". This is useful when building a navigation menu, such as a breadcrumb or a set of tabs where you'd like to show which of them is currently selected. It also provides useful context for assistive technology like screen readers.
+
+import { NavLink } from "react-router-dom";
+
+```jsx
+<NavLink
+  style={({ isActive, isPending }) => {
+    return {
+      color: isActive ? "red" : "inherit",
+    };
+  }}
+  className={({ isActive, isPending }) => {
+    return isActive ? "active" : isPending ? "pending" : "";
+  }}
+/>
 ```
 
 ## Nested Routes

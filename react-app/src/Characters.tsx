@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "./components/Loading/Loading";
 
-const ApiCall: React.FC = () => {
+const Characters: React.FC = () => {
   const [data, setData] = useState<Character[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -62,4 +62,4 @@ const ApiCall: React.FC = () => {
   );
 };
 
-export default ApiCall;
+export default Characters;
