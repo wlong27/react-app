@@ -1,10 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+interface Route {
+  path: string;
+  element: JSX.Element;
+}
+
+const routerConfig: Route[] = [
+  {
+    path: "/",
+    element: <div>Hello world!</div>,
+  },
+];
+
+const router = createBrowserRouter(routerConfig);
+const rootElement = document.getElementById("root")!;
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
