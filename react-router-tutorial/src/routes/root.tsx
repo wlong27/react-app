@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { getContacts } from '../contacts.ts';
 
 export default function Root() {
     return (
@@ -44,4 +45,10 @@ export default function Root() {
         </div>
       </>
     );
-  }
+}
+  
+
+export async function loader() {
+  const contacts = await getContacts('');
+  return { contacts };
+}

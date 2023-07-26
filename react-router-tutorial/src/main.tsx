@@ -5,9 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Root from "./routes/root";
-import ErrorPage from "./error-page";
-import Contact from "./routes/contact";
+import Root from "./routes/root.js";
+import ErrorPage from "./error-page.js";
+import Contact from "./components/contact.tsx";
 
 interface Route {
   path?: string;

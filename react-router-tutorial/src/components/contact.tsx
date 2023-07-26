@@ -1,12 +1,14 @@
 import { Form } from "react-router-dom";
 
-interface ContactData {
+export interface ContactData {
+  id?: string;
   first: string;
   last: string;
   avatar: string;
   twitter?: string;
   notes?: string;
   favorite: boolean;
+  createdAt?: Date;
 }
 
 interface ContactProps {
