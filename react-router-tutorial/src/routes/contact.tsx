@@ -60,14 +60,14 @@ function Contact() {
 
         {contact.notes && <p>{contact.notes}</p>}
 
-        {/* <div>
+        <div>
           <Form action="edit">
             <button type="submit">Edit</button>
           </Form>
           <Form
             method="post"
             action="destroy"
-            onSubmit={(event) => {
+            onSubmit={(event: Event) => {
               if (
                 !window.confirm(
                   "Please confirm you want to delete this record."
@@ -79,7 +79,7 @@ function Contact() {
           >
             <button type="submit">Delete</button>
           </Form>
-        </div> */}
+        </div>
       </div>
     </div>
   );

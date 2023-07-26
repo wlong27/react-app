@@ -4,6 +4,7 @@
 
 ## Setup
 - Install the package using a package manager such as yarn or npm.
+- Package installation will be at root folder level
   
 ```bash
 npm install react-router-dom

@@ -7,19 +7,41 @@ import {
 import "./index.css";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
+import Contact from "./routes/contact";
 
 interface Route {
-  path: string;
+  path?: string;
   element: JSX.Element;
-  errorElement: JSX.Element;
+  errorElement?: JSX.Element;
+  children?: Route[]
 }
 
+//outside root
+// const routerConfig: Route[] = [
+//   {
+//     path: "/",
+//     element: <Root />,
+//     errorElement: <ErrorPage />
+//   },
+//   {
+//     path: "contacts/:contactId",
+//     element: <Contact/>
+//   }
+// ];
+
+//nested inside root
 const routerConfig: Route[] = [
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />
-  },
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+      },
+    ],
+  }
 ];
 
 const router = createBrowserRouter(routerConfig);
