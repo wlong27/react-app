@@ -5,15 +5,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Root from "./routes/root.js";
+import Root, { loader as rootLoader } from "./routes/root.js";
 import ErrorPage from "./error-page.js";
-import Contact from "./components/contact.tsx";
+import Contact, { ContactData } from "./components/contact.tsx";
 
 interface Route {
   path?: string;
   element: JSX.Element;
   errorElement?: JSX.Element;
   children?: Route[]
+  loader?: () => Promise<{ contacts: ContactData[] }>;
 }
 
 //outside root
@@ -35,6 +36,7 @@ const routerConfig: Route[] = [
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    loader: rootLoader,
     children: [
       {
         path: "contacts/:contactId",
