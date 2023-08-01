@@ -1,6 +1,7 @@
 import { Link, Outlet, useLoaderData } from "react-router-dom";
-import { getContacts } from "../contacts.ts";
+import { getContacts, getCharacters } from "../contacts.ts";
 import { ContactData } from "../components/contact.tsx";
+
 
 export default function Root() {
   const { contacts } = useLoaderData() as { contacts: ContactData[] };
@@ -56,7 +57,16 @@ export default function Root() {
   );
 }
 
-export async function loader() {
-  const contacts = await getContacts("");
+// export async function loader() {
+//   const contacts = await getContacts("");
+//   return { contacts };
+// }
+
+export async function charactersloader() {
+  const contacts = await getCharacters("");
+  return { contacts };
+}
+export async function characterloader({ params }: any) {
+  const contacts = await getCharacters(params.contactId);
   return { contacts };
 }

@@ -1,4 +1,5 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getCharacters } from "../contacts.ts";
 
 export interface ContactData {
   id?: string;
@@ -9,21 +10,25 @@ export interface ContactData {
   notes?: string;
   favorite: boolean;
   createdAt?: Date;
+  height?: string;
+  mass?: string;
+  hairColor?: string;
+  eyeColor?: string;
+  birthYear?: string;
 }
 
 interface ContactProps {
   contact: ContactData;
 }
 
-function Contact() {
-  const contact: ContactData = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+export async function characterloader({ params }: any) {
+  const contacts = await getCharacters(params.contactId);
+  return contacts;
+}
+
+export default function Contact() {
+  const { contacts } = useLoaderData() as {contacts: ContactData[]};
+  const contact = contacts[0];
 
   return (
     <div id="contact">
@@ -61,6 +66,11 @@ function Contact() {
         )}
 
         {contact.notes && <p>{contact.notes}</p>}
+        {contact.height && <p>Height: {contact.height}</p>}
+        {contact.mass && <p>Mass: {contact.mass}</p>}
+        {contact.eyeColor && <p>EyeColor: {contact.eyeColor}</p>}
+        {contact.hairColor && <p>HairColor: {contact.hairColor}</p>}
+        {contact.birthYear && <p>BirthYear: {contact.birthYear}</p>}
 
         <div>
           <Form action="edit">
@@ -102,5 +112,3 @@ function Favorite({ contact }: ContactProps) {
     </Form>
   );
 }
-
-export default Contact;

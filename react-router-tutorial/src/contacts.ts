@@ -2,6 +2,18 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 import { ContactData } from "./components/contact.tsx";
+import axios from "axios";
+
+interface Character {
+  name: string;
+  height: string;
+  mass: string;
+  hair_color: string;
+  eye_color: string;
+  birth_year: string;
+  gender: string;
+  url: string;
+}
 
 export async function getContacts(query: any): Promise<ContactData[]>{
   await fakeNetwork(`getContacts:${query}`);
@@ -14,6 +26,38 @@ export async function getContacts(query: any): Promise<ContactData[]>{
   }
   return contacts.sort(sortBy("last", "createdAt"));
 }
+
+const mapCharacterToContact = (character:Character) => {
+  let contact: ContactData = {
+    id : character.url.replace('https://swapi.dev/api/people/',''),
+    first: character.name,
+    last: '',
+    avatar: `https://picsum.photos/200/200`,
+    favorite: false,
+    height: character.height,
+    hairColor: character.hair_color,
+    eyeColor: character.eye_color,
+    birthYear: character.birth_year
+  };
+  return contact;
+}
+
+export async function getCharacters(query: string): Promise<ContactData[]> {
+  let response;
+  if (query) {
+    response = await axios.get(`https://swapi.dev/api/people/${query}`);
+    const character = await response.data;
+    const array = [character].map(mapCharacterToContact);
+    return array;
+  }
+  else {
+    response = await axios.get(`https://swapi.dev/api/people`);
+    const characters = await response.data.results;
+    const array = characters.map(mapCharacterToContact);
+    return array;
+  }
+}
+
 
 export async function createContact(): Promise<ContactData> {
   await fakeNetwork(null);

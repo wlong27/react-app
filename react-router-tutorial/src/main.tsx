@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Root, { loader as rootLoader } from "./routes/root.js";
+import Root, { charactersloader, characterloader } from "./routes/root.tsx";
 import ErrorPage from "./error-page.js";
 import Contact, { ContactData } from "./components/contact.tsx";
 
@@ -13,34 +13,27 @@ interface Route {
   path?: string;
   element: JSX.Element;
   errorElement?: JSX.Element;
-  children?: Route[]
+  children?: ChildRoute[]
   loader?: () => Promise<{ contacts: ContactData[] }>;
 }
 
-//outside root
-// const routerConfig: Route[] = [
-//   {
-//     path: "/",
-//     element: <Root />,
-//     errorElement: <ErrorPage />
-//   },
-//   {
-//     path: "contacts/:contactId",
-//     element: <Contact/>
-//   }
-// ];
+interface ChildRoute {
+  path?: string;
+  element: JSX.Element;
+  loader?: ({ params }: any) => Promise<{ contacts: ContactData[] }>;
+}
 
-//nested inside root
 const routerConfig: Route[] = [
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
+    loader: charactersloader,
     children: [
       {
         path: "contacts/:contactId",
         element: <Contact />,
+        loader: characterloader,
       },
     ],
   }
