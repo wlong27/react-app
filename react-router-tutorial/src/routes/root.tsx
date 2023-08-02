@@ -1,14 +1,20 @@
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import { getContacts, getCharacters } from "../services/contacts.ts";
 import { ContactData } from "../components/contact.tsx";
-
+//import { useState, useEffect } from "react";
+//import Loading from "../components/loading/Loading.tsx";
 
 export default function Root() {
   const { contacts } = useLoaderData() as { contacts: ContactData[] };
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  // });
+
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1>React Router Star Wars Characters</h1>
         <div>
           <form id="search-form" role="search">
             <input
