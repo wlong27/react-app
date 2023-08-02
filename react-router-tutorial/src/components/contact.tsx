@@ -1,5 +1,5 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { getCharacters } from "../contacts.ts";
+import { getCharacters } from "../services/contacts.ts";
 
 export interface ContactData {
   id?: string;

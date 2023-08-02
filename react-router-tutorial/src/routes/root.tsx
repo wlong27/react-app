@@ -1,5 +1,5 @@
 import { Link, Outlet, useLoaderData } from "react-router-dom";
-import { getContacts, getCharacters } from "../contacts.ts";
+import { getContacts, getCharacters } from "../services/contacts.ts";
 import { ContactData } from "../components/contact.tsx";
 
 
@@ -57,10 +57,10 @@ export default function Root() {
   );
 }
 
-// export async function loader() {
-//   const contacts = await getContacts("");
-//   return { contacts };
-// }
+export async function loader() {
+  const contacts = await getContacts("");
+  return { contacts };
+}
 
 export async function charactersloader() {
   const contacts = await getCharacters("");

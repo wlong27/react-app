@@ -1,7 +1,7 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
-import { ContactData } from "./components/contact.tsx";
+import { ContactData } from "../components/contact.tsx";
 import axios from "axios";
 
 interface Character {
