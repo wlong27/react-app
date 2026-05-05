@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import AudioPlayer from '@/components/AudioPlayer/AudioPlayer';
 import './globals.css';
 
@@ -17,6 +18,10 @@ export default function RootLayout({
         <AudioPlayer />
         <div className="App">
           <h1>My Star Wars React App</h1>
+          <nav style={{ textAlign: 'center', marginBottom: 16 }}>
+            <Link href="/" style={{ marginRight: 20 }}>Characters</Link>
+            <Link href="/upload">File Upload</Link>
+          </nav>
           {children}
         </div>
       </body>
